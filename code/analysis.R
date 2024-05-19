@@ -24,7 +24,18 @@ ctaps_cleaned <- ctaps %>%
          Offset = as.numeric(grepl(Code, pattern = "Offset")),
          Scope3 = as.numeric(grepl(Code, pattern = "Scope3")))
 
+# Write to file
+ctaps_cleaned %>% 
+  write_csv(here("Manuscript", "Tables", "ctaps_cleaned.csv"))
+
 # ANALYSIS ---------------------------------------------------------------------
+
+ctaps_cleaned %>% 
+  dplyr::count(Country, Company, Year) %>% 
+  dplyr::count(Country, Company, Year) %>% 
+  group_by(Country, Year) %>% 
+  summarise(Companies = paste(Company, collapse = ", ")) %>% 
+  write_csv(here("Manuscript", "Tables", "companies_per_year.csv"))
 
 a <- ctaps_cleaned %>% 
   select(-Scope3) %>% 
@@ -37,7 +48,7 @@ a <- ctaps_cleaned %>%
   geom_col() +
   coord_flip() +
   theme_bw() +
-  labs(y = "Share of CTAPs mentioning", x = NULL) +
+  labs(y = "Share of reports mentioning", x = NULL) +
   scale_y_continuous(labels = scales::percent)
 
 b <- ctaps_cleaned %>% 
