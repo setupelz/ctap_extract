@@ -1,0 +1,17 @@
+Country,Year,Companies
+Australia,2021,"Rio Tinto, Woodside"
+Australia,2022,"AGL, Origin, Rio Tinto, Sims Metal, South23"
+Australia,2023,"AGL, APA, Rio Tinto, Sims Metal, South23, Woodside"
+France,2021,"Atos, Carmelia, Carrefour"
+France,2022,"Amundi, Carrefour, EDF, TotalEnergies"
+France,2023,"Engie, TotalEnergies"
+France,2024,TotalEnergies
+Switzerland,2020,Nestle
+Switzerland,2021,Holcim
+Switzerland,2022,"Glencore, Holcim, UBS"
+Switzerland,2023,"Holcim, Nestle, UBS"
+Switzerland,2024,Glencore
+UK,2020,BHP
+UK,2021,"Aviva, BHP, Rio Tinto, Unilever"
+UK,2022,"AngloAmerican, Rio Tinto, Shell"
+UK,2024,"Unilever, bp"
