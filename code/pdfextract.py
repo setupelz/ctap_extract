@@ -7,6 +7,8 @@
 # On Windows: set PDF_SERVICES_CLIENT_ID=your_client_id
 # On Windows: set PDF_SERVICES_CLIENT_SECRET=your_client_secret
 
+# You will need to install pdfservices-extract-sdk
+
 # This was written with the help of GitHub co-pilot and ChatGPT4o.
 # To run, execute `python code/pdfextract.py` in the terminal from root.
 
@@ -24,8 +26,12 @@ from adobe.pdfservices.operation.pdfjobs.jobs.extract_pdf_job import ExtractPDFJ
 from adobe.pdfservices.operation.pdfjobs.params.extract_pdf.extract_element_type import ExtractElementType
 from adobe.pdfservices.operation.pdfjobs.params.extract_pdf.extract_pdf_params import ExtractPDFParams
 from adobe.pdfservices.operation.pdfjobs.result.extract_pdf_result import ExtractPDFResult
+from dotenv import load_dotenv
 
 logging.basicConfig(level=logging.INFO)
+
+# Load environment variables from .env file
+load_dotenv()
 
 class ExtractTextInfoFromPDF:
     def __init__(self, pdf_path, output_path):
