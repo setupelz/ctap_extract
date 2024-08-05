@@ -76,7 +76,6 @@ class ExtractTextInfoFromPDF:
         time_stamp = now.strftime("%Y-%m-%dT%H-%M-%S")
         os.makedirs("output/ExtractTextInfoFromPDF", exist_ok=True)
         return f"output/ExtractTextInfoFromPDF/extract{time_stamp}.zip"
-    
 
 def main():
     pdf_root_directory = 'data/pdf'
