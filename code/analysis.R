@@ -39,5 +39,6 @@ date <- format(Sys.Date(), "%Y%m%d")
 # Save newly processed files
 ctaps_cleaned %>%
   anti_join(already_processed) %>% 
+  select(c("Report", "ID", "Country", "Company", "Year", "Page", "Text", "Codes")) %>% 
   write_xlsx(here("output", paste0("ctaps_cleaned", date, ".xlsx")))
 
