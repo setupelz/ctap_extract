@@ -63,7 +63,7 @@ def read_and_filter_texts(jsontext):
                     current_page = value
                 if key == "Text" and len(value) >= 50:
                     cleaned_value = clean_text(value)
-                    if filtered_texts and not filtered_texts[-1]["Text"].strip()[-1] in '.!?':
+                    if filtered_texts and filtered_texts[-1]["Text"].strip() and filtered_texts[-1]["Text"].strip()[-1] not in '.!?':
                         filtered_texts[-1]["Text"] += " " + cleaned_value
                     else:
                         filtered_texts.append({"Text": cleaned_value, "Page": current_page})
@@ -138,7 +138,7 @@ def query_json_with_openai(json_data_chunk):
 
     c: Text discussing alignment, comparison, contrast, or consistency of a scenario with Network for Greening the Financial System (NGFS) scenarios.
 
-    d: Text discussing use of a scenario from any organization other than IPCC, IEA, and NGFS.
+    d: Text discussing use of a scenario or target from any organization other than IPCC, IEA, and NGFS, such as the Science-Based Targets Intiative (SBTi) or the Task Force on Climate-related Financial Disclosures (TCFD).
 
     e: Text discussing alignment, comparison, contrast, or consistency of a scenario with the Paris Agreement's 1.5°C or well-below 2°C targets.
 
@@ -154,11 +154,18 @@ def query_json_with_openai(json_data_chunk):
 
     k: Text comparing Scope 3 or 'value chain' emissions in the context of scenarios.
 
-    l: Text comparing the use of offsets, carbon offsetting, carbon credits, carbon neutral or negative emissions technologies such as carbon capture and storage (CCS) in the context of scenarios.
+    l: Text comparing the use of offsets, carbon offsetting, carbon credits, carbon neutral, or negative emissions technologies in the context of scenarios.
 
     m: Text comparing the use of Bioenergy with Carbon Capture and Storage (BECCS) or related negative emissions technologies in the context of scenarios.
 
     n: Text comparing the use of Direct Air Capture (DAC), atmospheric carbon removal, or related negative emissions technologies in the context of scenarios.
+
+    o: Text comparing the use of afforestation, reforestation, soil carbon sequestration or related negative emissions technologies in the context of scenarios.
+
+    p: Text discussing alignment, comparison, contrast, or consistency of hydrogen, ammonia, green hydrogen, blue hydrogen, or related energies use in the context of scenarios.
+
+    q: Text discussing the assurance provided by a third party, assurance provider, or assurance standard in the context of scenarios.
+
     """
 
     prompt = f"""
