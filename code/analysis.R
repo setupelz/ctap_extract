@@ -31,14 +31,16 @@ ctaps_cleaned <- ctaps %>%
   separate_wider_delim(File, delim = ", ", names = c("Country", "Company", "Year", "Report"), too_many = "drop") %>% 
   select(-Codes) %>% 
   group_by(Country, Company, Year, Report, Page, ID, Text) %>% 
-  summarise(Codes = paste(Short, collapse = ", "))
+  summarise(Codes = paste(Short, collapse = ", ")) %>% 
+  mutate(Year = ifelse(Year == "2032", "2023", Year)) %>% 
+  arrange(desc(Year), Country, Company)
 
 # Save the current year month day as yyyymmdd
 date <- format(Sys.Date(), "%Y%m%d")
 
 # Save newly processed files
 ctaps_cleaned %>%
-  anti_join(already_processed) %>% 
+  # anti_join(already_processed) %>% 
   select(c("Report", "ID", "Country", "Company", "Year", "Page", "Text", "Codes")) %>% 
   write_xlsx(here("output", paste0("ctaps_cleaned", date, ".xlsx")))
 
