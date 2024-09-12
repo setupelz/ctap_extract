@@ -27,6 +27,7 @@ from adobe.pdfservices.operation.pdfjobs.params.extract_pdf.extract_element_type
 from adobe.pdfservices.operation.pdfjobs.params.extract_pdf.extract_pdf_params import ExtractPDFParams
 from adobe.pdfservices.operation.pdfjobs.result.extract_pdf_result import ExtractPDFResult
 from dotenv import load_dotenv
+import csv
 
 logging.basicConfig(level=logging.INFO)
 
@@ -80,36 +81,57 @@ class ExtractTextInfoFromPDF:
 def main():
     pdf_root_directory = 'data/pdf'
     output_directory = 'data/json'
-    error_directory = 'data/error'
+    csv_log_path = os.path.join(output_directory, 'processing_log.csv')
 
+    # Ensure the output directory exists
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
-    
-    if not os.path.exists(error_directory):
-        os.makedirs(error_directory)
 
+    # Create a list of already processed files from the output directory
     processed_files = [f.replace('.zip', '.pdf') for f in os.listdir(output_directory)]
 
-    for country_folder in os.listdir(pdf_root_directory):
-        country_path = os.path.join(pdf_root_directory, country_folder)
-        if os.path.isdir(country_path):
-            for pdf_file in os.listdir(country_path):
-                if pdf_file.endswith('.pdf'):
-                    if f"{country_folder}_{pdf_file}" in processed_files:
-                        print(f"Skipping {pdf_file} as it was already processed")
-                    else:
-                        print(f"Processing {pdf_file}")
-                        pdf_path = os.path.join(country_path, pdf_file)
-                        json_filename = f"{country_folder}_{pdf_file.replace('.pdf', '.zip')}"
-                        output_path = os.path.join(output_directory, json_filename)
-                        try:
-                            ExtractTextInfoFromPDF(pdf_path, output_path)
-                            print(f"Extracted {pdf_file} to {output_path}")
-                        except (ServiceApiException, ServiceUsageException, SdkException) as e:
-                            print(f"Error processing {pdf_file}: {e}")
-                            error_path = os.path.join(error_directory, pdf_file)
-                            shutil.move(pdf_path, error_path)
-                            print(f"Moved {pdf_file} to {error_path}")
+    # Dictionary to hold log data
+    log_data = {}
+
+    # If the CSV file exists, overwrite with updated data
+    with open(csv_log_path, mode='w', newline='') as log_file:
+        writer = csv.writer(log_file)
+        writer.writerow(['Country', 'File', 'Status'])  # Always write the header row
+
+        for country_folder in os.listdir(pdf_root_directory):
+            country_path = os.path.join(pdf_root_directory, country_folder)
+            if os.path.isdir(country_path):
+                for pdf_file in os.listdir(country_path):
+                    if pdf_file.endswith('.pdf'):
+                        key = f"{country_folder}_{pdf_file}"
+
+                        # Check if the file has already been processed by looking at the processed files list
+                        if key in processed_files:
+                            print(f"Skipping {pdf_file} as it was already processed")
+                            log_data[key] = 'Processed'
+                        else:
+                            print(f"Processing {pdf_file}")
+                            pdf_path = os.path.join(country_path, pdf_file)
+                            json_filename = f"{country_folder}_{pdf_file.replace('.pdf', '.zip')}"
+                            output_path = os.path.join(output_directory, json_filename)
+
+                            try:
+                                # Process the PDF
+                                ExtractTextInfoFromPDF(pdf_path, output_path)
+                                print(f"Extracted {pdf_file} to {output_path}")
+
+                                # Mark as processed
+                                log_data[key] = 'Processed'
+                            except (ServiceApiException, ServiceUsageException, SdkException) as e:
+                                print(f"Error processing {pdf_file}: {e}")
+
+                                # Log the error
+                                log_data[key] = f"Error: {str(e)}"
+
+        # Write all logs (processed or errored) into the CSV file
+        for key, status in log_data.items():
+            country, pdf_file = key.split('_', 1)
+            writer.writerow([country, pdf_file, status])
 
 if __name__ == "__main__":
     main()

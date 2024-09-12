@@ -1,15 +1,18 @@
-﻿Code,Short,Description,,
-a,IPCC,Text discussing alignment / comparison / contrast / consistency of a scenario with scenarios from the Intergovernmental Panel on Climate Change (IPCC) and their reports.,,
-b,IEA,Text discussing alignment / comparison / contrast / consistency of a scenario with scenarios from the International Energy Agency (IEA) and their reports.,,
-c,NGFS,Text discussing alignment / comparison / contrast / consistency of a scenario with Network for Greening the Financial System (NGFS) scenarios.,,
-d,Other,"Text discussing use of a scenario from any other party / organisation except the IPCC, IEA and NGFS.",,
-e,Paris,Text discussing alignment / comparison / contrast / consistency of a scenario with the Paris Agreement's 1.5C or 2C targets.,,
-f,2C,Text discussing alignment / comparison / contrast / consistency of a scenario with a 2C warming or 2C pathway scenario.,,
-g,RCP,"Text discussing alignment / comparison / contrast / consustency of a scenario with the Representative Concentration Pathyways (rcp 8.5, rcp 4.5, rcp 2.6, rcp 1.9)",,
-h,C1-C4,Text discussing alignment / comparison / contrast / consistency of a scenario with a C1a/C1/C2/C3/C4 category scenario.,,
-i,Impacts,Text discussing the climate impact projections / climate impacts in a given scenario.,,
-j,Resilience,Text discussing resilience / adaptation / adaptive capacity of a business strategy / plan / scenario in relation to coping with climate change scenarios.,,
-k,Scope3,Text comparing Scope 3 or 'value chain' emissions in the context of scenarios.,,
-l,Offset,"Text comparing the use of carbon offsetting, carbon credits or negative emissions technologies in the context of scenarios.",, 
-m,BECCS,Text comparing the use of Bioenergy with Carbon Capture and Storage (BECCS) or related negative emissions technologies in the context of scenarios.,,
-n,DACCS,"Text comparing the use of Direct Air Capture, (DAC) atmospheric carbon removal, or related negative emissions technologies in the context of scenarios.",,
+﻿Code,Short,Description
+a,IPCC,Text discussing alignment / comparison / contrast / consistency of a scenario with scenarios from the Intergovernmental Panel on Climate Change (IPCC) and their reports.
+b,IEA,Text discussing alignment / comparison / contrast / consistency of a scenario with scenarios from the International Energy Agency (IEA) and their reports.
+c,NGFS,Text discussing alignment / comparison / contrast / consistency of a scenario with Network for Greening the Financial System (NGFS) scenarios.
+d,Other,"Text discussing use of a scenario from any other party / organisation except the IPCC, IEA and NGFS."
+e,Paris,Text discussing alignment / comparison / contrast / consistency of a scenario with the Paris Agreement's 1.5C or 2C targets.
+f,2C,Text discussing alignment / comparison / contrast / consistency of a scenario with a 2C warming or 2C pathway scenario.
+g,RCP,"Text discussing alignment / comparison / contrast / consustency of a scenario with the Representative Concentration Pathyways (rcp 8.5, rcp 4.5, rcp 2.6, rcp 1.9)"
+h,C1-C4,Text discussing alignment / comparison / contrast / consistency of a scenario with a C1a/C1/C2/C3/C4 category scenario.
+i,Impacts,Text discussing the climate impact projections / climate impacts in a given scenario.
+j,Resilience,Text discussing resilience / adaptation / adaptive capacity of a business strategy / plan / scenario in relation to coping with climate change scenarios.
+k,Scope3,Text comparing Scope 3 or 'value chain' emissions in the context of scenarios.
+l,Offset,"Text comparing the use of carbon offsetting, carbon credits or negative emissions technologies in the context of scenarios."
+m,BECCS,Text comparing the use of Bioenergy with Carbon Capture and Storage (BECCS) or related negative emissions technologies in the context of scenarios.
+n,DACCS,"Text comparing the use of Direct Air Capture, (DAC) atmospheric carbon removal, or related negative emissions technologies in the context of scenarios."
+o,ARSOC,"Text comparing the use of afforestation, reforestation, soil carbon sequestration or related negative emissions technologies in the context of scenarios."
+p,HNH3,"Text discussing alignment, comparison, contrast, or consistency of hydrogen, ammonia, green hydrogen, blue hydrogen, or related energies use in the context of scenarios."
+q,Assure,"Text discussing the assurance provided by a third party, assurance provider, or assurance standard in the context of scenarios."
